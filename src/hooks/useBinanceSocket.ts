@@ -10,8 +10,7 @@ export const useBinanceSocket = (symbol: string = 'btcusdt') => {
   });
   const [isConnected, setIsConnected] = useState(false);
   const wsRef = useRef<WebSocket | null>(null);
-  const reconnectTimeoutRef = useRef<NodeJS.Timeout>();
-
+  const reconnectTimeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
   const handleTradeMessage = useCallback((data: any) => {
     const trade: Trade = {
       id: data.a.toString(),
